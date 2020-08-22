@@ -1,117 +1,79 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset="utf-8" />
-        <title>Web Visualizations Dashboard</title>
+<head>
+  <meta charset="utf-8">
+  <title>UFO Finder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-             crossorigin="anonymous">
-
-  <!--CSS-->
-  <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-
-    <body>
-        <!-- Navigation Menu -->
-        <div class="navigation">
-          <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" style="background-color: #0BADA6;" href="index.html">Latitude</a>
-            <button class="navbar-toggler  border border-white" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-              aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Plots
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="temperature.html">Temperature</a>
-                    <a class="dropdown-item" href="humidity.html">Humidity</a>
-                    <a class="dropdown-item" href="cloudiness.html">Cloudiness</a>
-                    <a class="dropdown-item" href="windspeed.html">Wind Speed</a>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="comparisons.html">Comparison</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="data.html">Data</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
+<body>
+  <div class="wrapper">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">UFO Sightings
+            <img class="nav-ufo" src="static/images/ufo.svg">
+          </a>
         </div>
-        <!-- Content  -->
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-7 col-md-12">
-              <!-- Left box  -->
-              <div class="box">
-                <h3 class="title">Summary: Latitude vs. X</h3>
-                <hr>
-                <img src="Resources/temperature.png" class="vizualization rounded float-left" alt="Temperature">
-                <p>The purpose of this project was to analyze how weather changes as you get closer to the equator. To
-                  accomplish this analysis, we first pulled data from the OpenWeatherMap API to assemble a dataset on over
-                  500 cities.</p>
-                <p>After assembling the dataset, we used Matplotlib to plot various aspects of the weather vs. latitude.
-                  Factors we looked at included: temperature, cloudiness, wind speed, and humidity. This site provides the
-                  source data and visualizations created as part of the analysis, as well as explanations and descriptions of
-                  any trends and correlations witnessed.</p>
+      </div>
+    </nav>
+    <div class="hero text-center">
+      <h1>UFO Sightings</h1>
+      <p>The Truth is Out There</p>
+    </div>
+    <div class="container">
+      <div class="row margin-top-50">
+        <div class="col-md-2">
+          <aside class="filters">
+            <div class="panel panel-default">
+              <div class="panel-heading">Filter Search</div>
+              <div class="panel-body">
+                <form>
+                  <div class="form-group">
+                    <ul class="list-group" id="filters">
+                      <li class="filter list-group-item">
+                        <label for="date">Enter a Date</label>
+                        <input class="form-control" id="datetime" type="text" placeholder="1/11/2011">
+                      </li>
+                    </ul>
+                  </div>
+                  <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
+                </form>
               </div>
             </div>
-            <div class="col-lg-5 col-md-12">
-              <!-- Right Box -->
-              <div class="box">
-                <h5 class="title">Visualizations</h5>
-                <hr>
-                <div class="container">
-                  <div class="row" style="padding-bottom: 10px;">
-                    <div class="col-6">
-                      <a href="temperature.html">
-                        <img src="Resources/temperature.png" alt="Temperature">
-                      </a>
-                    </div>
-                    <div class="col-6">
-                      <a href="humidity.html">
-                        <img class="panel" src="Resources/humidity.png" alt="Humidity">
-                      </a>
-                    </div>
-                  </div>
-                  <div class="row" style="padding-bottom: 10px;">
-                    <div class="col-6">
-                      <a href="cloudiness.html">
-                        <img class="panel" src="Resources/cloudiness.png" alt="Cloudiness">
-                      </a>
-                    </div>
-                    <div class="col-6">
-                      <a href="windspeed.html">
-                        <img class="panel" src="Resources/windspeed.png" alt="Wind Speed">
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          </aside>
+        </div>
+        <div class="col-md-10">
+          <div id="table-area" class="">
+            <table id="ufo-table" class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="table-head">Date</th>
+                  <th class="table-head">City</th>
+                  <th class="table-head">State</th>
+                  <th class="table-head">Country</th>
+                  <th class="table-head">Shape</th>
+                  <th class="table-head">Duration</th>
+                  <th class="table-head">Comments</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
           </div>
         </div>
-        <!-- Footer -->
-    <footer class="page-footer font-small footer-dark">
-        <div class="footer-copyright text-center py-3">© Copyright Data Visualization Bootcamp 2020
-        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <span class="bottom">UFO Sightings</span>
     </footer>
-
-        <!-- Bootstrap Java Script -->
-          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            crossorigin="anonymous"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            crossorigin="anonymous"></script>
-          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            crossorigin="anonymous"></script>
-
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+  <script src="static/js/data.js"></script>
+  <script src="static/js/app.js"></script>
 </body>
+
 </html>
